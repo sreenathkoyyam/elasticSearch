@@ -1,0 +1,102 @@
+# query for post a data
+POST inspections/_doc
+{
+  "name" : "sreenath koyyam",
+  "location" : "koyyam6"
+  
+}
+POST inspections/_doc
+{
+  "name" : "sreenath koyyam and kannur",
+  "location" : "koyyam6"
+  
+}
+
+# query for get a set of data
+
+GET inspections/_doc/_search
+
+# query for PUT a set of data with id
+
+PUT inspections/_doc/123
+{
+  "name" : "sreenaths4",
+  "location" : "koyyam4"
+  
+}
+
+# query for DELETE a set of data
+
+DELETE inspections
+
+# query for create index 
+
+PUT inspections
+{
+  "settings": {
+    "index.number_of_shards" : 1,
+    "index.number_of_replicas" : 0
+  }
+}
+
+# query for bulk data insertion
+
+POST /inspections/_doc/_bulk
+{"index" : { "_id" : 1 }}
+{
+  "name" : "sreenath3",
+  "location" : "koyyam3"
+  
+}
+{"index" : { "_id" : 2 }}
+{
+  "name" : "sreenath5",
+  "location" : "koyyam5"
+  
+}
+{"index" : { "_id" : 3 }}
+{
+  "name" : "sreenath6",
+  "location" : "koyyam6"
+  
+}
+
+# Differant query for get a set of data
+
+GET inspections/_doc/_search
+{
+  "query" : {
+    "bool": {
+      "must": [
+         {
+           "match" : {
+      "name" : "sreenath2"
+    }
+        },
+        {
+           "match_phrase" : {
+      "name" : "sreenath koyyam"
+    }
+        }
+      ]
+    }
+  }
+  
+}
+
+GET inspections/_doc/_search
+{
+  "query" : {
+    "match" : {
+      "name" : "kannur"
+    }
+  }
+}
+GET inspections/_doc/_search
+{
+  "query" : {
+    "match_phrase" : {
+      "name" : "sreenath koyyam"
+    }
+  }
+}
